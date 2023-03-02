@@ -1,33 +1,80 @@
+class TipoPlazo {
+    constructor (nombre, interesxdia, interesanual){
+    this.nombre = nombre;
+    this.interesxdia = interesxdia;
+    this.interesanual = interesanual;
 
-let Respuesta =  prompt ('Ud en que metodo de inversion esta interesado?\n Plazo Fijo\n Fondo de Inversion\n ( por favor escriir la respuesta deseada)')
-if (Respuesta === "Plazo Fijo"){
+    }
+    get_datos(){
+        console.log("<----------->");
+        console.log("Nombre: ", this.nombre);
+        console.log("Interesxdia: ", this.interesxdia);
+        console.log("Interes Anual: ", this.interesanual);
+        console.log("");
+    }
 
-let monto = prompt('Ingrese monto de Dinero en Pesos Argentinos')
-let dias = prompt('ingresa cantidad de dias')
-while (monto < 1000 || dias < 30) {
-    alert('El monto minimo a ingresar es de $1000 Pesos Argentinos y el minimo de dias es de 30.')
-    monto = prompt('Ingrese monto de Dinero')
-    dias = prompt('ingresa cantidad de dias')
-
+     CalcularPlazo(monto, dias) {
+        if (monto > 999 && dias > 29) {
+            
+            return true;
+            
+          
+        }
+        else{
+            return false;
+        }
+        
+    }
 }
-let plazofijo = prompt('Elija el tipo de Plazo Fijo.\n .Tradicional\n .Banco Central')
 
-switch (plazofijo) {
 
-    case 'Tradicional':
-        tasadeinteresa = 0.18
-        console.log('interes anual 65.7%')
-        tasaanual = '65.7%'
-        break
-    case 'Banco Central':
-        tasadeinteresa = 0.20
-        console.log ('interes anual 73%')
-        tasaanual = '73%'
-        break
+let lista_plazos = [];
+
+lista_plazos.push( new TipoPlazo("Tradicional" , 0.18 , 65.7) );
+lista_plazos.push( new TipoPlazo("Banco Central" , 0.20 , 73 ) );
+lista_plazos.push( new TipoPlazo("FMI" , 0.14, 51.1) );
+
+
+
+
+
+console.log("Lista de Plazos Fijos");
+
+for( let TipoPlazo of lista_plazos ){
+
+    TipoPlazo.get_datos();
 }
 
-alert('Ud Obtendria: $' + (dias * tasadeinteresa) * monto  + '\n Interes por dia: ' + tasadeinteresa+ '%' + '\n Interes Anual: ' + tasaanual )
+
+
+function buscar_tipoplazo( TipoPlazo ){
+
+    return TipoPlazo.nombre == Respuesta
 }
-else{
-    alert ('Por favor cominicarse al 0800 888 4323, para mas informacion ')
+
+
+
+
+
+let Respuesta =  prompt ('Ud que tipo de Plazo Fijo desea calcular?\n Tradicional\n Banco Central\n FMI\n  ( por favor escribir la respuesta deseada)')
+let resultado_busqueda = lista_plazos.find( buscar_tipoplazo  );
+
+if( resultado_busqueda != undefined ){
+
+    console.log(resultado_busqueda);
+    let monto = prompt('Ingrese monto de Dinero en Pesos Argentinos, minimo $1000')
+    let dias = prompt('ingresa cantidad de dias, minimo 30 Dias')
+
+    if( resultado_busqueda.CalcularPlazo( monto, dias) ){
+
+        console.log('Ud Obtendria: $' + (dias * resultado_busqueda.interesxdia) * monto  + '\n Interes por dia: ' + resultado_busqueda.interesxdia+ '%' + '\n Interes Anual: ' + resultado_busqueda.interesanual );
+        resultado_busqueda.get_datos();
+        alert ('Ud Obtendria: $' + (dias * resultado_busqueda.interesxdia) * monto  + '\n Interes por dia: ' + resultado_busqueda.interesxdia+ '%' + '\n Interes Anual: ' + resultado_busqueda.interesanual );
+
+    }
+    else{
+        console.log("No se puede realizar calculo de Plazo Fijo que ud selecciono, por favor fijarse que el monto minimo de dinero es de $1000 ARG y 30 dias de minimo.\n Gracias!! ");
+        alert ("No se puede realizar calculo de Plazo Fijo que ud selecciono, por favor fijarse que el monto minimo de dinero es de $1000 ARG y 30 dias de minimo.\n Gracias!! ");
+    }
+
 }
