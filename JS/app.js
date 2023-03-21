@@ -49,32 +49,51 @@ for( let TipoPlazo of lista_plazos ){
 
 function buscar_tipoplazo( TipoPlazo ){
 
-    return TipoPlazo.nombre == Respuesta
+    return TipoPlazo.nombre == Respuesta;
 }
 
+let Monto = document.getElementById("monto_ingresado");
+
+Monto.addEventListener("input", function(e){
+    let ingresomonto= e.target;
+    console.log (ingresomonto.value);
+})
+
+let Dias = document.getElementById("dias_ingresado");
+
+Dias.addEventListener("input", function(e){
+    let ingresodias= e.target;
+    console.log (ingresodias.value);
+})
+
+let Plazos = document.getElementById("Plazos");
+
+Plazos.addEventListener("change", function(e){
+    let Respuesta= e.target;
+    console.log (Respuesta.value);
+})
 
 
 
-
-let Respuesta =  prompt ('Ud que tipo de Plazo Fijo desea calcular?\n Tradicional\n Banco Central\n FMI\n  ( por favor escribir la respuesta deseada)')
+//let Respuesta =  prompt ('Ud que tipo de Plazo Fijo desea calcular?\n Tradicional\n Banco Central\n FMI\n  ( por favor escribir la respuesta deseada)')
 let resultado_busqueda = lista_plazos.find( buscar_tipoplazo  );
 
-if( resultado_busqueda != undefined ){
+//if( resultado_busqueda != undefined ){
 
-    console.log(resultado_busqueda);
-    let monto = prompt('Ingrese monto de Dinero en Pesos Argentinos, minimo $1000')
-    let dias = prompt('ingresa cantidad de dias, minimo 30 Dias')
+    //console.log(resultado_busqueda);
+    //let monto = prompt('Ingrese monto de Dinero en Pesos Argentinos, minimo $1000')
+    //let dias = prompt('ingresa cantidad de dias, minimo 30 Dias')
 
-    if( resultado_busqueda.CalcularPlazo( monto, dias) ){
+    //if( resultado_busqueda.CalcularPlazo( monto, dias) ){
 
-        console.log('Ud Obtendria: $' + (dias * resultado_busqueda.interesxdia) * monto  + '\n Interes por dia: ' + resultado_busqueda.interesxdia+ '%' + '\n Interes Anual: ' + resultado_busqueda.interesanual );
-        resultado_busqueda.get_datos();
-        alert ('Ud Obtendria: $' + (dias * resultado_busqueda.interesxdia) * monto  + '\n Interes por dia: ' + resultado_busqueda.interesxdia+ '%' + '\n Interes Anual: ' + resultado_busqueda.interesanual );
+        //console.log('Ud Obtendria: $' + (dias * resultado_busqueda.interesxdia) * monto  + '\n Interes por dia: ' + resultado_busqueda.interesxdia+ '%' + '\n Interes Anual: ' + resultado_busqueda.interesanual );
+        //resultado_busqueda.get_datos();
+        //alert ('Ud Obtendria: $' + (dias * resultado_busqueda.interesxdia) * monto  + '\n Interes por dia: ' + resultado_busqueda.interesxdia+ '%' + '\n Interes Anual: ' + resultado_busqueda.interesanual );
 
-    }
-    else{
-        console.log("No se puede realizar calculo de Plazo Fijo que ud selecciono, por favor fijarse que el monto minimo de dinero es de $1000 ARG y 30 dias de minimo.\n Gracias!! ");
-        alert ("No se puede realizar calculo de Plazo Fijo que ud selecciono, por favor fijarse que el monto minimo de dinero es de $1000 ARG y 30 dias de minimo.\n Gracias!! ");
-    }
+    //}
+    //else{
+        //console.log("No se puede realizar calculo de Plazo Fijo que ud selecciono, por favor fijarse que el monto minimo de dinero es de $1000 ARG y 30 dias de minimo.\n Gracias!! ");
+        //alert ("No se puede realizar calculo de Plazo Fijo que ud selecciono, por favor fijarse que el monto minimo de dinero es de $1000 ARG y 30 dias de minimo.\n Gracias!! ");
+    //}
 
-}
+//}
