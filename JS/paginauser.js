@@ -77,13 +77,25 @@ let form = document.getElementById("formulario");
         interes = lista_plazos[2].interesxdia;
         console.log(interes);
     }
-     const Total = Math.round (monto * (interes * dias));
+     const Total =Math.round (monto * (interes * dias));
      const mensajeDiv = document.getElementById("mensaje");
-     mensajeDiv.textContent = `Ud va a recibir a finalizar su plazo fijo: $${Total} pesos Argentinos.`;
-     const regisDiv = document.getElementById ("registrar");
-     regisDiv.innerHTML = '<div class="signupFrm"> <form action="" class="form"> <a href="Registro.html" class="btn btn-success"> Registrate!</a> </form> </div>';
-     
-     regisDiv.innerHTML;
+     mensajeDiv.textContent = `Ud va a recibir a finalizar su plazo fijo: $${Total} pesos Argentinos`;
+     const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Plazo fijo realizado con Exito!!'
+      })
      console.log("funciona" + Total);
     
 
@@ -91,7 +103,7 @@ let form = document.getElementById("formulario");
    else{
     Swal.fire({
         title: 'Error!',
-        text: 'Fijese que los datos que ingreso sean correcto!!',
+        text: 'Fijese que los datos que ingreso sean correctos!!',
         icon: 'error',
         confirmButtonText: 'Cerrar'
       })
