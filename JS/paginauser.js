@@ -66,20 +66,36 @@ let form = document.getElementById("formulario");
     //CalcularPlazo(monto.value, dias.value);
    if (CalcularPlazo(monto, dias)){
     let interes = 0;
+    let TNA = 0;
     if(tipo == 1){
         interes = lista_plazos[0].interesxdia;
+        TNA = lista_plazos[0].interesanual;
         console.log(interes);
 
     }else if (tipo == 2){
         interes = lista_plazos[1].interesxdia;
+        TNA = lista_plazos[1].interesanual;
         console.log(interes);
     }else if (tipo == 3){
         interes = lista_plazos[2].interesxdia;
+        TNA = lista_plazos[2].interesanual;
         console.log(interes);
     }
-     const Total =Math.round (monto * (interes * dias));
-     const mensajeDiv = document.getElementById("mensaje");
-     mensajeDiv.textContent = `Ud va a recibir a finalizar su plazo fijo: $${Total} pesos Argentinos`;
+    const porcentaje= (interes * monto)/ 100; 
+    const intereses  = Math.round (porcentaje * dias);
+    const Total =parseFloat( intereses) + parseFloat (monto); 
+   
+    const regisDiv = document.getElementById ("registrar");
+    regisDiv.innerHTML = '<div class="signupFrm1"> <form action="" class="form"> <div class="inputContainer" id="mensaje"></div> <div class="inputContainer" id="mensaje1"></div> <div class="inputContainer" id="mensaje2"></div> </form> </div>';
+    
+    regisDiv.innerHTML;
+    const mensajeDiv = document.getElementById("mensaje");
+    mensajeDiv.textContent = `Ud va a recibir a finalizar su plazo fijo: $${Total} pesos Argentinos.`;
+    const mensajeDiv1 = document.getElementById("mensaje1");
+    mensajeDiv1.textContent =`Taza Actual (TNA): ${TNA}%`;
+
+    const mensajeDiv2 = document.getElementById("mensaje2");
+    mensajeDiv2.textContent = `Intereses: $${intereses} `;
      const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

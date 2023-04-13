@@ -1,0 +1,24 @@
+[
+    {
+        "nombre": "Tradicional" ,
+        "interesxdia": 0.18 ,
+        "interesanual": 65.7,  
+        "valor": 1 
+    },
+
+    {
+        "nombre":"Banco Central" ,
+        "interesxdia":  0.20,
+        "interesanual":  73,  
+        "valor": 2
+    },
+
+    {
+        "nombre": "FMI",
+        "interesxdia":  0.14,
+        "interesanual": 51.1 ,  
+        "valor": 3
+    }
+    
+    
+]
